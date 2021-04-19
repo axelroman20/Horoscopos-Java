@@ -1,0 +1,312 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package horoscopos;
+
+import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author Restf
+ */
+public class main extends javax.swing.JFrame {
+
+    ImageIcon ACUARIO = new ImageIcon(getClass().getResource("/img/Acuario.png"));
+    ImageIcon CAPRICORNIO = new ImageIcon(getClass().getResource("/img/Capricornio.png"));
+    ImageIcon CANCER = new ImageIcon(getClass().getResource("/img/Cancer.png"));
+    ImageIcon ESCORPION = new ImageIcon(getClass().getResource("/img/Escorpion.png"));
+    ImageIcon GEMINIS = new ImageIcon(getClass().getResource("/img/Geminis.png"));
+    ImageIcon LEO = new ImageIcon(getClass().getResource("/img/Leo.png"));
+    ImageIcon LIBRA = new ImageIcon(getClass().getResource("/img/Libra.png"));
+    ImageIcon PISCIS = new ImageIcon(getClass().getResource("/img/Piscis.png"));
+    ImageIcon SAGITARIO = new ImageIcon(getClass().getResource("/img/Sagitario.png"));
+    ImageIcon TAURO = new ImageIcon(getClass().getResource("/img/Tauro.png"));
+    ImageIcon VIRGO = new ImageIcon(getClass().getResource("/img/Virgo.png"));
+    ImageIcon ARIES = new ImageIcon(getClass().getResource("/img/Aries.png"));
+          
+    
+    public main() {
+        initComponents();
+        this.setLocationRelativeTo(this);
+        this.setResizable(false);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        txtDate = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        btnAceptar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("HOROSCOPOS");
+
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Selecciona tu fecha de nacimiento");
+
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(btnAceptar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel1)))
+                .addContainerGap(48, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnAceptar)
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>                        
+    
+    java.sql.Date fecha;
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {                                           
+        Date date = txtDate.getDate();
+        if(date != null){
+            long d = date.getTime();
+            fecha = new java.sql.Date(d);
+            String fecha2 = fecha.toString();
+            int date1 = fecha2.length();
+            int date2 = date1 - 3;
+            String dia = fecha2.substring(date2+1,date2+3);
+            String mes = fecha2.substring(date2-2,date2);
+            int dia2 = Integer.parseInt(dia);
+            int mes2 = Integer.parseInt(mes);
+            signo(dia2, mes2);
+        }
+            
+    }                                          
+    
+    public void signo(int dia, int mes) {
+        String signo = null;
+        String estacion = null;
+        ImageIcon img = null;
+        switch (mes) {
+            case 1:
+                if (dia > 21) {
+                    signo = "ACUARIO";
+                    estacion = "INVIERNO";
+                    img = ACUARIO;
+                } else {
+                    signo = "CAPRICORNIO";
+                    estacion = "INVIERNO";
+                    img = CAPRICORNIO;
+                }
+                break;
+            case 2:
+                    if (dia > 19) {
+                        signo = "PISCIS";
+                        estacion = "INVIERNO";
+                        img = PISCIS;
+                    } else {
+                        signo = "ACUARIO";
+                        estacion = "INVIERNO";
+                        img = ACUARIO;
+                    }
+                    break;
+            case 3:
+                    if (dia > 20) {
+                        signo = "ARIES";
+                        estacion = "PRIMAVERA";
+                        img = ARIES;
+                    } else {
+                        signo = "PISCIS";
+                        estacion = "INVIERNO";
+                        img = PISCIS;
+                    }
+                    break;
+            case 4:
+                    if (dia > 20) {
+                        signo = "TAURO";
+                        estacion = "PRIMAVERA";
+                        img = TAURO;
+                    } else {
+                        signo = "ARIES";
+                        estacion = "PRIMAVERA";
+                        img = ARIES;
+                    }
+                    break;
+            case 5:
+                    if (dia > 21) {
+                        signo = "GEMINIS";
+                        estacion = "PRIMAVERA";
+                        img = GEMINIS;
+                    } else {
+                        signo = "TAURO";
+                        estacion = "PRIMAVERA";
+                        img = TAURO;
+                    }
+                    break;
+            case 6:
+                    if (dia > 20) {
+                        signo = "CANCER";
+                        estacion = "VERANO";
+                        img = CANCER;
+                    } else {
+                        signo = "GEMINIS";
+                        estacion = "PRIMAVERA";
+                        img = GEMINIS;
+                    }
+                    break;
+            case 7:
+                    if (dia > 22) {
+                        signo = "LEO";
+                        estacion = "VERANO";
+                        img = LEO;
+                    } else {
+                        signo = "CANCER";
+                        estacion = "VERANO";
+                        img = CANCER;
+                    }
+                    break;
+            case 8:
+                    if (dia > 21) {
+                        signo = "VIRGO";
+                        estacion = "VERANO";
+                        img = VIRGO;
+                    } else {
+                        signo = "LEO";
+                        estacion = "VERANO";
+                        img = LEO;
+                    }
+                    break;
+            case 9:
+                    if (dia > 22) {
+                        signo = "LIBRA";
+                        estacion = "OTOÑO";
+                        img = LIBRA;
+                    } else {
+                        signo = "VIRGO";
+                        estacion = "VERANO";
+                        img = VIRGO;
+                    }
+                    break;
+            case 10:
+                    if (dia > 22) {
+                        signo = "ESCORPION";
+                        estacion = "OTOÑO";
+                        img = ESCORPION;
+                    } else {
+                        signo = "LIBRA";
+                        estacion = "OTOÑO";
+                        img = LIBRA;
+                    }
+                    break;
+            case 11:
+                    if (dia > 21) {
+                        signo = "SAGITARIO";
+                        estacion = "OTOÑO";
+                        img = SAGITARIO;
+                    } else {
+                        signo = "ESCORPION";
+                        estacion = "OTOÑO";
+                        img = ESCORPION;
+                    }
+                    break;
+            case 12:
+                    if (dia > 21) {
+                        signo = "CAPRICORNIO";
+                        estacion = "INVIERNO";
+                        img = CAPRICORNIO;
+                    } else {
+                        signo = "SAGITARIO";
+                        estacion = "OTOÑO";
+                        img = SAGITARIO;
+                    }
+            break;
+        }
+        JOptionPane.showMessageDialog(null,"",signo+" - "+estacion,JOptionPane.DEFAULT_OPTION, img);
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new main().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify                     
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private com.toedter.calendar.JDateChooser txtDate;
+    // End of variables declaration                   
+}
