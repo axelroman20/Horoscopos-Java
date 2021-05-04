@@ -2,3 +2,5 @@
 Programa creado con Netbeans 8.1 que utiliza una libreria de calentario para seleccionala fecha de nacimiento,
 cuando se obtiene la fecha, se hace un proceso que al final muestra el resultado diciendo que signo del horoscopo somos
 junto a una imagen y una frase.
+
+![ApplicationFrameHost_k2Sq84BDrj](https://user-images.githubusercontent.com/60910680/116968343-e9e43700-ac79-11eb-8ada-b962b5c7c803.png)
